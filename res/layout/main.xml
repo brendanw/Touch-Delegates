@@ -6,6 +6,7 @@
     android:weightSum="2.0" >
 
     <com.brendan.touchdelegates.TDRelativeLayout
+        android:id="@+id/btn1_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -20,6 +21,7 @@
     </com.brendan.touchdelegates.TDRelativeLayout>
 
     <com.brendan.touchdelegates.TDRelativeLayout
+        android:id="@+id/btn2_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"

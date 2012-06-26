@@ -16,7 +16,10 @@ public class MyTouchDelegate extends Button {
 
 	private static final String TAG = "MyTouchDelegate";
 
-	private int mHitPadding = 200; //extra touch area
+	private int mHitPadding = 0; //extra touch area
+	public final static int DELEGATE = 0;
+	public final static int MY_DELEGATE = 1;
+	private int mMode = MY_DELEGATE;
 
 	public MyTouchDelegate(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -28,18 +31,29 @@ public class MyTouchDelegate extends Button {
 	public void setHitPadding(int hitPadding) {
 		mHitPadding = hitPadding;
 	}
+	
+	/*
+	 * Method for testing purposes only
+	 */
+	public void setDelegate(int delegate) {
+		mMode = delegate;
+	}
 
 	/*
 	 * Expand the outRect to reflect touchable area
 	 */
 	@Override
 	public void getHitRect(Rect outRect) {
-		Log.d(TAG, "getHitRect()");
 		outRect.set(getLeft() - mHitPadding, getTop() - mHitPadding, getRight() + mHitPadding, getBottom() + mHitPadding);
 	}
+	
+	
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		if(mMode == DELEGATE) {
+			return super.onTouchEvent(event);
+		}
 		final int x = (int) event.getX();
 		final int y = (int) event.getY();
 		final int action = event.getAction();

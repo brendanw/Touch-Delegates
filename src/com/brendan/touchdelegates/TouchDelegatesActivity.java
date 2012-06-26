@@ -8,7 +8,9 @@ import android.view.View;
 
 public class TouchDelegatesActivity extends Activity {
 	
+	private TDRelativeLayout mBtn1Holder;
 	private MyTouchDelegate mBtn1;
+	private TDRelativeLayout mBtn2Holder;
 	private MyTouchDelegate mBtn2;
 	
     /** Called when the activity is first created. */
@@ -16,16 +18,29 @@ public class TouchDelegatesActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        mBtn1Holder = (TDRelativeLayout) findViewById(R.id.btn1_holder);
+        mBtn2Holder = (TDRelativeLayout) findViewById(R.id.btn2_holder);
         mBtn1 = (MyTouchDelegate) findViewById(R.id.btn1);
         mBtn2 = (MyTouchDelegate) findViewById(R.id.btn2);
         expandHitArea();
+        
+        /* Comment out expandHitArea() and uncomment the below to try
+        android's TouchDelegate class:
+        
+        expandTouchArea(mBtn1Holder, mBtn1, 200);
+        mBtn1.setDelegate(MyTouchDelegate.DELEGATE);
+        expandTouchArea(mBtn2Holder, mBtn2, 200);
+        mBtn2.setDelegate(MyTouchDelegate.DELEGATE);
+        */
     }
     
     /*
      * Expands hit area using getHitRect
      */
     public void expandHitArea() {
+    	mBtn1.setDelegate(MyTouchDelegate.MY_DELEGATE);
     	mBtn1.setHitPadding(200);
+    	mBtn2.setDelegate(MyTouchDelegate.MY_DELEGATE);
     	mBtn2.setHitPadding(200);
     }
     
